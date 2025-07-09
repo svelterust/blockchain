@@ -1,4 +1,4 @@
-import { fail } from "@sveltejs/kit";
+import { fail, redirect } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
 import { superValidate } from "sveltekit-superforms";
 import { zod } from "sveltekit-superforms/adapters";
@@ -28,6 +28,6 @@ export const actions: Actions = {
       return fail(500, { form, message: error.message });
     }
 
-    return { form, message: "Please check your email for a verification link before signing in." };
+    redirect(303, "/verify");
   },
 };

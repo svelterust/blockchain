@@ -23,7 +23,7 @@
 
 <nav class="navbar mx-auto mb-8 max-w-screen-xl px-0 py-6">
   <div class="navbar-start">
-    <a href="/" class="text-5xl font-extrabold">BLOCKCHAIN</a>
+    <a href="/" class="text-4xl font-extrabold">Blockchain</a>
   </div>
 
   <div class="navbar-end">

@@ -16,7 +16,10 @@
 </svelte:head>
 
 <div class="w-full max-w-md p-8">
-  <h1 class="mb-4 text-center text-4xl font-semibold">Login</h1>
+  <p class="mb-4 text-center text-4xl font-extrabold">
+    <a href="/" class="mb-4">Blockchain</a>
+  </p>
+
   <form method="POST" action="?/signin" use:enhance class="space-y-4">
     <div class="form-control">
       <label class="label" for="email">
