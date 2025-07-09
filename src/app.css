@@ -1,2 +1,10 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/forms";
+@plugin "daisyui" {
+  themes: cmyk --default;
+}
+
+/* Font */
+body {
+  font-family: "Geist", system-ui;
+}
