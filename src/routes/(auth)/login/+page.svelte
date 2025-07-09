@@ -29,7 +29,6 @@
         type="email"
         id="email"
         name="email"
-        placeholder="email"
         class="input input-bordered w-full"
         class:input-error={$errors.email}
         bind:value={$form.email}
@@ -49,7 +48,6 @@
         type="password"
         id="password"
         name="password"
-        placeholder="password"
         class="input input-bordered w-full"
         class:input-error={$errors.password}
         bind:value={$form.password}
