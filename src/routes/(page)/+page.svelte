@@ -1,5 +1,5 @@
 <svelte:head>
-  <title>Blockchain Platform - Secure Digital Asset Trading</title>
+  <title>Blockchain</title>
 </svelte:head>
 
 <section class="hero min-h-[70vh]">
