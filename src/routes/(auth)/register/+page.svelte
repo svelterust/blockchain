@@ -34,7 +34,7 @@
         bind:value={$form.email}
       />
       {#if $errors.email}
-        <label class="label">
+        <label class="label" for="email">
           <span class="label-text-alt text-error">{$errors.email}</span>
         </label>
       {/if}
@@ -53,7 +53,7 @@
         bind:value={$form.password}
       />
       {#if $errors.password}
-        <label class="label">
+        <label class="label" for="password">
           <span class="label-text-alt text-error">{$errors.password}</span>
         </label>
       {/if}
