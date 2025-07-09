@@ -6,6 +6,9 @@
   const { data, children } = $props();
   const { session, supabase } = $derived(data);
 
+  // State
+  let signingOut = $state(false);
+
   onMount(() => {
     const { data } = supabase.auth.onAuthStateChange((_, newSession) => {
       if (newSession?.expires_at !== session?.expires_at) {
@@ -16,8 +19,10 @@
   });
 
   async function handleSignOut() {
+    signingOut = true;
     await supabase.auth.signOut();
     goto("/");
+    signingOut = false;
   }
 </script>
 
@@ -29,7 +34,14 @@
   <div class="navbar-end">
     <div class="flex gap-2">
       {#if session}
-        <button onclick={handleSignOut} class="btn btn-outline btn-lg">Sign Out</button>
+        <button onclick={handleSignOut} class="btn btn-outline btn-lg" disabled={signingOut}>
+          {#if signingOut}
+            <span class="loading loading-spinner loading-sm"></span>
+            Signing Out...
+          {:else}
+            Sign Out
+          {/if}
+        </button>
       {:else}
         <a href="/login" class="btn btn-primary btn-lg mr-2">Login</a>
         <a href="/register" class="btn btn-outline btn-lg">Register</a>
