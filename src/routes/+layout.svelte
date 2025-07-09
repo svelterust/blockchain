@@ -23,9 +23,9 @@
   }
 </script>
 
-<nav class="navbar mx-auto max-w-screen-xl px-0 py-6">
+<nav class="navbar mx-auto mb-8 max-w-screen-xl px-0 py-6">
   <div class="navbar-start">
-    <a href="/" class="text-5xl font-bold">Blockchain</a>
+    <a href="/" class="text-5xl font-extrabold">BLOCKCHAIN</a>
   </div>
 
   <div class="navbar-end">
