@@ -59,12 +59,6 @@
       {/if}
     </div>
 
-    {#if data.message}
-      <div class="alert alert-info">
-        <span>{data.message}</span>
-      </div>
-    {/if}
-
     <button type="submit" class="btn btn-primary w-full" disabled={$submitting}>
       {#if $submitting}
         <span class="loading loading-spinner loading-sm"></span>

@@ -3,7 +3,7 @@ import type { RequestHandler } from "./$types";
 
 export const GET: RequestHandler = async ({ url, locals: { supabase } }) => {
   const token_hash = url.searchParams.get("token_hash");
-  const type = url.searchParams.get("type");
+  const type = url.searchParams.get("type") as any;
   const next = url.searchParams.get("next") ?? "/";
 
   /**
