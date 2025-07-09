@@ -33,7 +33,7 @@
   "dependencies": {
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.50.4",
-    "zod": "^4.0.0"
+    "zod": "^3.23.8"
   },
   "prettier": {
     "useTabs": false,
