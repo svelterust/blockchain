@@ -1,4 +1,4 @@
-import { Database } from "$lib/types/database.types";
+import { Database } from "./database";
 import { SupabaseClient, Session, User } from "@supabase/supabase-js";
 
 declare global {
