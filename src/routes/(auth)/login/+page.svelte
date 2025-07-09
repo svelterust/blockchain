@@ -5,7 +5,6 @@
 
   // Props
   const { data } = $props();
-
   const { form, errors, enhance, submitting } = superForm(data.form, {
     validators: zodClient(loginSchema),
   });
