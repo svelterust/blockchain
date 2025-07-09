@@ -1,16 +1,23 @@
 import { fail } from "@sveltejs/kit";
-import type { Actions } from "./$types";
+import type { Actions, PageServerLoad } from "./$types";
+import { superValidate } from "sveltekit-superforms";
+import { zod } from "sveltekit-superforms/adapters";
+import { registerSchema } from "$lib/schemas";
+
+export const load: PageServerLoad = async () => {
+  return {
+    form: await superValidate(zod(registerSchema)),
+  };
+};
 
 export const actions: Actions = {
   signup: async ({ request, locals: { supabase } }) => {
-    const formData = await request.formData();
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
+    // Get form
+    const form = await superValidate(request, zod(registerSchema));
+    if (!form.valid) return fail(400, { form });
+    const { email, password } = form.data;
 
-    if (!email || !password) {
-      return fail(400, { message: "Email and password are required" });
-    }
-
+    // Try to sign up
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -18,9 +25,9 @@ export const actions: Actions = {
 
     if (error) {
       console.error("Sign up error:", error);
-      return fail(500, { message: error.message });
+      return fail(500, { form, message: error.message });
     }
 
-    return { message: "Please check your email for a verification link before signing in." };
+    return { form, message: "Please check your email for a verification link before signing in." };
   },
 };

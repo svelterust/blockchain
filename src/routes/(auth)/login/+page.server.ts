@@ -1,16 +1,23 @@
 import { fail, redirect } from "@sveltejs/kit";
-import type { Actions } from "./$types";
+import type { Actions, PageServerLoad } from "./$types";
+import { superValidate } from "sveltekit-superforms";
+import { zod } from "sveltekit-superforms/adapters";
+import { loginSchema } from "$lib/schemas";
+
+export const load: PageServerLoad = async () => {
+  return {
+    form: await superValidate(zod(loginSchema)),
+  };
+};
 
 export const actions: Actions = {
   signin: async ({ request, locals: { supabase } }) => {
-    const formData = await request.formData();
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
+    // Get form
+    const form = await superValidate(request, zod(loginSchema));
+    if (!form.valid) return fail(400, { form });
+    const { email, password } = form.data;
 
-    if (!email || !password) {
-      return fail(400, { message: "Email and password are required" });
-    }
-
+    // Try signing in
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -18,7 +25,7 @@ export const actions: Actions = {
 
     if (error) {
       console.error("Sign in error:", error);
-      return fail(500, { message: error.message });
+      return fail(500, { form, message: error.message });
     }
 
     redirect(303, "/");
