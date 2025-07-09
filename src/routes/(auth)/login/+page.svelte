@@ -8,8 +8,8 @@
   <title>Login - Blockchain</title>
 </svelte:head>
 
-<div class="mx-auto max-w-md">
-  <h1 class="mb-4 text-4xl font-semibold">Login</h1>
+<div class="w-full max-w-md p-8">
+  <h1 class="mb-4 text-center text-4xl font-semibold">Login</h1>
   <form method="POST" action="?/signin" use:enhance class="space-y-4">
     <div class="form-control">
       <label class="label" for="email">
@@ -33,7 +33,7 @@
 
     <button type="submit" class="btn btn-primary w-full">Login</button>
 
-    <p class="text-center text-sm">
+    <p class="text-center text-sm text-slate-700">
       Don't have an account?
       <a href="/register" class="link link-primary">Register here</a>
     </p>
